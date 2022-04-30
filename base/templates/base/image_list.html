@@ -1,0 +1,41 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+
+<div>
+    <div class="list-container">    
+        <h1>Search by category</h1>
+        <div class="category-div">
+            <form method="GET">
+                <input type="text" class="category-input" name="category-area" value="{{category_input}}">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+        
+    <div class="add-icon">
+        <a class="add-link" href="{% url 'add-image' %}">&#43;</a>
+    </div>
+</div>
+
+{% for image in images %}
+<div class="image-container">
+    <div class="image-on-list">
+        <a href="{% url 'image' image.id %}">
+            <img class="image" src="{{image.image.url}}">
+        </a>
+    </div>
+    <div><b>Title:</b> {{image}}</div>
+    <div>
+        {% if image.category %}
+            <b>Category:</b> {{image.category}}
+        {% else %}
+            <b>No category</b>
+        {% endif %}
+    </div>
+</div>
+{% empty %}
+<h3>No images</h3>
+{% endfor %}
+
+{% endblock content %}

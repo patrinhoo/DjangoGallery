@@ -1,0 +1,23 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border-style: solid; border-width: 1px; width: 100%; max-width: 800px;">
+    <h1>Register</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label>{{form.username.label}}</label>
+            {{form.username}}
+            <label>{{form.password1.label}}</label>
+            {{form.password1}}
+            <label>{{form.password2.label}}</label>
+            {{form.password2}}
+        </div>
+        <input class="register-button" type="submit" value="Register">
+    </form>
+
+    <p>Already have an account? <a class="logout" href="{% url 'login' %}">Login</a></p>
+</div>
+
+{% endblock content %}

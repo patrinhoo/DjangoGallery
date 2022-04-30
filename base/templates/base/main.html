@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gallery</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+    
+    <style>
+        body{
+            background: rgb(0,212,255);
+            background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(255,0,100,0.4906337535014006) 50%, rgba(0,212,255,1) 100%);
+            font-family: 'Nunito', sans-serif;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        h1, h2, h3, h4, h5, h6{
+            font-weight:normal; 
+            text-align:center; 
+            color: #fff;
+        }
+
+        p{
+            color: #fff;
+        }
+
+        input[type=text],
+        input[type=password],
+        textarea{
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 10px;
+            width: 50%;
+        }
+
+        input[type=submit]{
+            background-color: #ddd;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 10px;
+            width: 20%;
+        }
+
+        label{
+            padding-top: 10px !important;
+            display: block;
+            color: #fff;
+        }
+        
+        .user-info{
+            width: auto;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            align-items: center; 
+            text-align: center;
+            display: flex; 
+            justify-content: space-between; 
+            max-width: 1000px;
+        }
+
+        .user-p{
+            color: #fff; 
+            width: 100%; 
+            text-align: center; 
+            margin-top: 15px; 
+            margin-bottom: 5px;
+        }
+
+        .container{
+            max-width: 1000px;
+            width: auto;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            align-items: center; 
+            text-align: center;
+        }
+       
+        .image-container{
+            padding: 5px; 
+            text-align: center; 
+            align-items: center;
+            margin: 5px;
+            display: inline-block;
+            border-style: solid;
+            border-radius: 10px;
+            border-width: 1px;
+            background-color: #fff;
+        }
+
+        .image-on-list{
+            border-style: double;
+            border-radius: 5px;
+        }
+
+        .image-on-list:hover{
+            border-style: double;
+            border-radius: 5px;
+            opacity: 0.5;
+        }
+
+        .single-image{
+            max-height: 60vh;
+            max-width: 100%;
+            height:auto;
+            width:auto;
+            border-style: double;
+            border-radius: 10px;
+            border-color: #ccc;
+        }
+
+
+        .add-link{
+            font-size: 80px;
+            text-decoration: none;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .category-input{
+            margin-bottom: 20px;
+        }
+
+        .category-div{
+            align-items: center; 
+            text-align: center;
+            margin-bottom: 0px;
+        }
+
+        .image{
+            vertical-align: middle;
+            height: 150px;
+        }
+
+        .logout{
+            color: #fff;
+            text-decoration: none;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 5px;
+            padding: 6px;
+            background-color: #6e96ff;
+        }
+
+        .icon{
+            font-size: 80px; 
+            text-decoration: none; 
+            color: #fff;
+        }
+
+        .download-icon{
+            font-size: 80px;
+            font-weight: 900;
+            text-decoration: none; 
+            color: #fff;
+        }
+
+        .image-nav-container{
+            display: flex; 
+            justify-content: space-between; 
+            padding-bottom: 40px; 
+            text-align: center; 
+            align-items: center;
+        }
+
+        .add-icon{
+            display: inline-block; 
+            text-align: right;
+        }
+
+        .list-container{
+            display: inline-block; 
+            width: 80%; 
+            margin-left: 5%;
+        }
+
+        .add-image-container{
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            border-style: solid; 
+            border-width: 1px; 
+            width: 100%; 
+            max-width: 600px; 
+            border-color: #ccc; 
+            padding: 20px;
+        }
+
+        .add-image-header{
+            display: flex; 
+            justify-content: space-between; 
+            margin-right: 20%;
+        }
+
+        .add-back-div{
+            width: 20%;
+        }
+
+        .add-header{
+            margin-right: 20%;
+        }
+
+        .add-button{
+            margin-top: 20px;
+        }
+
+        .login-button{
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .register-button{
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="user-info">
+
+        {% if request.user.is_authenticated %}
+        <p class="user-p">Logged in as: <i>{{request.user}}</i></p>
+        
+        <p class="user-p"><a class="logout" href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+
+        <p class="user-p">Not logged in</i></p>
+        {% endif %}
+    </div>
+    <hr>
+
+    
+    <div class="container">
+
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</body>
+</html>

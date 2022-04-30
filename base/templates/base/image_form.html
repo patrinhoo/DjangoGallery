@@ -1,0 +1,23 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="add-image-container">
+    
+    <div class="add-image-header">
+        <div class="add-back-div">
+            <a class="icon" href="{% url 'images' %}">&#8678;</a>
+        </div>
+        
+        <h1 class="add-header">Add Image</h1>
+    </div>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <input class="register-button" type="submit" value="Add">
+    </form>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="image-nav-container">
+    <div>
+        <a class="icon" href="{% url 'images'%}">&#8678;</a>
+    </div>
+    <div>
+        <h1>Title: <b>{{image}}</b></h1>
+        {% if image.category %}
+        <h3>Category: <b>{{image.category}}</b></h3>
+        {% else %}
+        <h3><b>No category</b></h3>
+        {% endif %}
+    </div>
+
+    <div>
+        <a class="icon" href="{% url 'delete-image' image.id %}">&#128465;</a>
+    </div>
+</div>
+
+<div>
+    <img class="single-image" src="{{image.image.url}}">
+</div>
+
+<div>
+    <a class="download-icon" href="{{image.image.url}}" download>&#10515;</a>
+</div>
+
+
+{% endblock content %}
